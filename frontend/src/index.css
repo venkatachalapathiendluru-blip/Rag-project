@@ -1,0 +1,113 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/ibm-plex-sans';
+@import '@fontsource/ibm-plex-mono/400.css';
+@import '@fontsource/ibm-plex-mono/500.css';
+@import 'highlight.js/styles/github.css' layer(base);
+
+:root {
+  color-scheme: light;
+  --bg: oklch(0.985 0.003 200);
+  --panel: oklch(0.96 0.005 200);
+  --raised: oklch(1 0 0);
+  --ink: oklch(0.24 0.015 220);
+  --ink-2: oklch(0.42 0.015 220);
+  --ink-3: oklch(0.5 0.012 220);
+  --line: oklch(0.89 0.008 210);
+  --line-strong: oklch(0.76 0.012 210);
+  --accent: oklch(0.43 0.075 205);
+  --accent-hover: oklch(0.37 0.075 205);
+  --accent-soft: oklch(0.94 0.022 205);
+  --on-accent: oklch(0.99 0.003 200);
+  --good: oklch(0.42 0.1 155);
+  --good-soft: oklch(0.95 0.035 155);
+  --warn: oklch(0.45 0.1 75);
+  --warn-soft: oklch(0.95 0.05 85);
+  --bad: oklch(0.48 0.16 27);
+  --bad-soft: oklch(0.95 0.03 27);
+  --bar: #2a78d6;
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --bg: oklch(0.2 0.01 225);
+  --panel: oklch(0.175 0.01 225);
+  --raised: oklch(0.24 0.012 225);
+  --ink: oklch(0.93 0.005 210);
+  --ink-2: oklch(0.78 0.008 210);
+  --ink-3: oklch(0.7 0.008 210);
+  --line: oklch(0.31 0.012 225);
+  --line-strong: oklch(0.44 0.014 225);
+  --accent: oklch(0.76 0.08 200);
+  --accent-hover: oklch(0.82 0.08 200);
+  --accent-soft: oklch(0.3 0.035 205);
+  --on-accent: oklch(0.2 0.02 220);
+  --good: oklch(0.8 0.11 155);
+  --good-soft: oklch(0.29 0.04 155);
+  --warn: oklch(0.82 0.11 85);
+  --warn-soft: oklch(0.3 0.05 85);
+  --bad: oklch(0.78 0.12 27);
+  --bad-soft: oklch(0.3 0.06 27);
+  --bar: #3987e5;
+}
+
+@theme inline {
+  --font-sans: 'IBM Plex Sans Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+  --color-bg: var(--bg);
+  --color-panel: var(--panel);
+  --color-raised: var(--raised);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-soft: var(--accent-soft);
+  --color-on-accent: var(--on-accent);
+  --color-good: var(--good);
+  --color-good-soft: var(--good-soft);
+  --color-warn: var(--warn);
+  --color-warn-soft: var(--warn-soft);
+  --color-bad: var(--bad);
+  --color-bad-soft: var(--bad-soft);
+}
+
+html, body, #root { height: 100%; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+::selection { background: var(--accent); color: var(--on-accent); }
+* { scrollbar-color: var(--line-strong) transparent; scrollbar-width: thin; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+button:not(:disabled), [role='button'], select, summary { cursor: pointer; }
+h1 { font-size: 1.375rem; font-weight: 600; letter-spacing: -0.01em; text-wrap: balance; }
+h2 { font-size: 1rem; font-weight: 600; }
+table { font-variant-numeric: tabular-nums; }
+.num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+
+.prose-answer { line-height: 1.62; max-width: 72ch; overflow-wrap: anywhere; }
+.prose-answer > * + * { margin-top: 0.7em; }
+.prose-answer ul { list-style: disc; padding-left: 1.3em; }
+.prose-answer ol { list-style: decimal; padding-left: 1.4em; }
+.prose-answer li + li { margin-top: 0.25em; }
+.prose-answer h1, .prose-answer h2, .prose-answer h3 { font-size: 1rem; font-weight: 600; margin-top: 1em; }
+.prose-answer a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+.prose-answer code { font-family: var(--font-mono); font-size: 0.9em; background: var(--panel); padding: 0.1em 0.3em; border-radius: 4px; }
+.prose-answer pre { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 0.75rem; overflow-x: auto; }
+.prose-answer pre code { background: none; padding: 0; }
+.prose-answer table { border-collapse: collapse; display: block; overflow-x: auto; }
+.prose-answer th, .prose-answer td { border: 1px solid var(--line); padding: 0.25rem 0.5rem; text-align: left; }
+:root[data-theme='dark'] .hljs { color: var(--ink); background: transparent; }
+:root[data-theme='dark'] .hljs-keyword, :root[data-theme='dark'] .hljs-title { color: var(--accent); }
+:root[data-theme='dark'] .hljs-string { color: var(--good); }
+:root[data-theme='dark'] .hljs-comment { color: var(--ink-3); }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}

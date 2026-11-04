@@ -1,0 +1,224 @@
+{
+  "generated_at": "2026-11-03T15:17:43.630552+00:00",
+  "tool": "ragas",
+  "judge_model": "nvidia/nemotron-3.5-bolt-e4b",
+  "generation_config": "C_rrf3_1_top18",
+  "questions": 33,
+  "summary": {
+    "faithfulness": {
+      "mean": 0.9848,
+      "scored": 33,
+      "of": 33
+    },
+    "context_recall": {
+      "mean": 0.9697,
+      "scored": 33,
+      "of": 33
+    },
+    "llm_context_precision_with_reference": {
+      "mean": 0.9268,
+      "scored": 33,
+      "of": 33
+    }
+  },
+  "per_question": [
+    {
+      "question_id": "GDV1-001",
+      "faithfulness": 1.0,
+      "context_recall": 1.0,
+      "llm_context_precision_with_reference": 0.9999999999
+    },
+    {
+      "question_id": "GDV1-002",
+      "faithfulness": 1.0,
+      "context_recall": 1.0,
+      "llm_context_precision_with_reference": 0.9999999999
+    },
+    {
+      "question_id": "GDV1-003",
+      "faithfulness": 1.0,
+      "context_recall": 1.0,
+      "llm_context_precision_with_reference": 0.99999999995
+    },
+    {
+      "question_id": "GDV1-004",
+      "faithfulness": 1.0,
+      "context_recall": 1.0,
+      "llm_context_precision_with_reference": 0.9999999999
+    },
+    {
+      "question_id": "GDV1-005",
+      "faithfulness": 1.0,
+      "context_recall": 1.0,
+      "llm_context_precision_with_reference": 0.9999999999
+    },
+    {
+      "question_id": "GDV1-006",
+      "faithfulness": 1.0,
+      "context_recall": 1.0,
+      "llm_context_precision_with_reference": 0.99999999995
+    },
+    {
+      "question_id": "GDV1-007",
+      "faithfulness": 1.0,
+      "context_recall": 1.0,
+      "llm_context_precision_with_reference": 0.99999999995
+    },
+    {
+      "question_id": "GDV1-008",
+      "faithfulness": 1.0,
+      "context_recall": 1.0,
+      "llm_context_precision_with_reference": 0.99999999995
+    },
+    {
+      "question_id": "GDV1-009",
+      "faithfulness": 1.0,
+      "context_recall": 1.0,
+      "llm_context_precision_with_reference": 0.9999999999666667
+    },
+    {
+      "question_id": "GDV1-010",
+      "faithfulness": 1.0,
+      "context_recall": 1.0,
+      "llm_context_precision_with_reference": 0.9999999999666667
+    },
+    {
+      "question_id": "GDV1-011",
+      "faithfulness": 1.0,
+      "context_recall": 1.0,
+      "llm_context_precision_with_reference": 0.99999999995
+    },
+    {
+      "question_id": "GDV1-012",
+      "faithfulness": 1.0,
+      "context_recall": 1.0,
+      "llm_context_precision_with_reference": 0.9999999999666667
+    },
+    {
+      "question_id": "GDV1-013",
+      "faithfulness": 1.0,
+      "context_recall": 1.0,
+      "llm_context_precision_with_reference": 0.8333333332916666
+    },
+    {
+      "question_id": "GDV1-014",
+      "faithfulness": 1.0,
+      "context_recall": 1.0,
+      "llm_context_precision_with_reference": 0.99999999995
+    },
+    {
+      "question_id": "GDV1-015",
+      "faithfulness": 1.0,
+      "context_recall": 1.0,
+      "llm_context_precision_with_reference": 0.9999999999666667
+    },
+    {
+      "question_id": "GDV1-016",
+      "faithfulness": 1.0,
+      "context_recall": 1.0,
+      "llm_context_precision_with_reference": 0.8333333332916666
+    },
+    {
+      "question_id": "GDV1-017",
+      "faithfulness": 1.0,
+      "context_recall": 1.0,
+      "llm_context_precision_with_reference": 0.99999999995
+    },
+    {
+      "question_id": "GDV1-018",
+      "faithfulness": 0.8333333333333334,
+      "context_recall": 1.0,
+      "llm_context_precision_with_reference": 0.9999999999666667
+    },
+    {
+      "question_id": "GDV1-019",
+      "faithfulness": 0.6666666666666666,
+      "context_recall": 1.0,
+      "llm_context_precision_with_reference": 0.8333333332916666
+    },
+    {
+      "question_id": "GDV1-020",
+      "faithfulness": 1.0,
+      "context_recall": 1.0,
+      "llm_context_precision_with_reference": 0.8333333332916666
+    },
+    {
+      "question_id": "GDV1-021",
+      "faithfulness": 1.0,
+      "context_recall": 1.0,
+      "llm_context_precision_with_reference": 0.99999999995
+    },
+    {
+      "question_id": "GDV1-022",
+      "faithfulness": 1.0,
+      "context_recall": 1.0,
+      "llm_context_precision_with_reference": 0.9999999999
+    },
+    {
+      "question_id": "GDV1-023",
+      "faithfulness": 1.0,
+      "context_recall": 1.0,
+      "llm_context_precision_with_reference": 0.9999999999666667
+    },
+    {
+      "question_id": "GDV1-024",
+      "faithfulness": 1.0,
+      "context_recall": 1.0,
+      "llm_context_precision_with_reference": 0.8333333332916666
+    },
+    {
+      "question_id": "GDV1-025",
+      "faithfulness": 1.0,
+      "context_recall": 1.0,
+      "llm_context_precision_with_reference": 0.9999999999
+    },
+    {
+      "question_id": "GDV1-026",
+      "faithfulness": 1.0,
+      "context_recall": 1.0,
+      "llm_context_precision_with_reference": 0.49999999995
+    },
+    {
+      "question_id": "GDV1-027",
+      "faithfulness": 1.0,
+      "context_recall": 1.0,
+      "llm_context_precision_with_reference": 0.8333333332916666
+    },
+    {
+      "question_id": "GDV1-028",
+      "faithfulness": 1.0,
+      "context_recall": 0.0,
+      "llm_context_precision_with_reference": 0.9999999999
+    },
+    {
+      "question_id": "GDV1-029",
+      "faithfulness": 1.0,
+      "context_recall": 1.0,
+      "llm_context_precision_with_reference": 0.5833333333041666
+    },
+    {
+      "question_id": "GDV1-030",
+      "faithfulness": 1.0,
+      "context_recall": 1.0,
+      "llm_context_precision_with_reference": 0.9999999999
+    },
+    {
+      "question_id": "GDV1-031",
+      "faithfulness": 1.0,
+      "context_recall": 1.0,
+      "llm_context_precision_with_reference": 0.9999999999
+    },
+    {
+      "question_id": "GDV1-032",
+      "faithfulness": 1.0,
+      "context_recall": 1.0,
+      "llm_context_precision_with_reference": 0.99999999995
+    },
+    {
+      "question_id": "GDV1-039",
+      "faithfulness": 1.0,
+      "context_recall": 1.0,
+      "llm_context_precision_with_reference": 0.49999999995
+    }
+  ]
+}

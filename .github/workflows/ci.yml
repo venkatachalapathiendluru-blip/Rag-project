@@ -1,0 +1,88 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  secrets:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Reject committed keys and environment files
+        run: |
+          if git ls-files | grep -E '(^|/)\.env$'; then exit 1; fi
+          if git grep -nE 'nvapi-[A-Za-z0-9_-]{20,}|ghp_[A-Za-z0-9]{20,}|sk-[A-Za-z0-9]{20,}'; then exit 1; fi
+
+  backend:
+    runs-on: ubuntu-latest
+    env:
+      NVIDIA_API_KEY: ci-placeholder
+      NVIDIA_BASE_URL: http://localhost/not-used
+      NVIDIA_MODEL: ci
+      NVIDIA_RERANK_URL: http://localhost/not-used
+      NVIDIA_RERANK_MODEL: ci
+      DB_PASSWORD: ci-password
+      PYTHON: python
+    services:
+      postgres:
+        image: pgvector/pgvector:pg16
+        env:
+          POSTGRES_DB: rag_db
+          POSTGRES_USER: rag_user
+          POSTGRES_PASSWORD: ci-password
+        ports: ["5544:5432"]
+        options: >-
+          --health-cmd "pg_isready -U rag_user -d rag_db"
+          --health-interval 5s --health-timeout 5s --health-retries 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+      - run: pip install torch --index-url https://download.pytorch.org/whl/cpu --extra-index-url https://pypi.org/simple
+      - run: pip install -r requirements.txt
+      - name: Offline tests
+        run: scripts/test.sh offline
+      - name: Prepare the disposable database
+        env:
+          PGPASSWORD: ci-password
+        run: |
+          psql -h localhost -p 5544 -U rag_user -d rag_db -q -f schema.sql
+          psql -h localhost -p 5544 -U rag_user -d rag_db -qc \
+            "INSERT INTO documents (id, content, embedding) SELECT g, 'Placeholder chunk ' || g, array_fill(0.1::real, ARRAY[384])::vector FROM generate_series(1, 18) g"
+      - name: Database tests
+        env:
+          RAG_TEST_DB_PORT: "5544"
+        run: scripts/test.sh db
+
+  frontend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - run: npm ci
+      - run: npx oxlint
+      - run: npx tsc -b
+      - run: npx vitest run
+      - run: npx vite build
+
+  config:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate the compose file with the example environment
+        run: |
+          cp .env.example .env
+          sed -i 's/^DB_PASSWORD=$/DB_PASSWORD=ci-password/' .env
+          docker compose config --quiet

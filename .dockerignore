@@ -1,0 +1,12 @@
+*
+!api.py
+!chunking.py
+!guardrails.py
+!tracing.py
+!trace_report.py
+!rag.py
+!rag_chat.py
+!hybrid_retriever.py
+!requirements.txt
+!backend/
+**/__pycache__

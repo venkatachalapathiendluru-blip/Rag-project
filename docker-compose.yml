@@ -1,0 +1,59 @@
+# Local stack. Ports bind to 127.0.0.1. See DEPLOYMENT.md before exposing it.
+services:
+  db:
+    image: pgvector/pgvector:pg16
+    environment:
+      POSTGRES_DB: rag_db
+      POSTGRES_USER: rag_user
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?Set DB_PASSWORD in .env}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./schema.sql:/docker-entrypoint-initdb.d/schema.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U rag_user -d rag_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  # Explicit deployment step. It runs once and exits, then the API starts.
+  migrate:
+    build: .
+    command: ["python", "-m", "backend.migrate"]
+    healthcheck:
+      disable: true
+    env_file: .env
+    environment:
+      DB_HOST: db
+      DB_PORT: "5432"
+    depends_on:
+      db:
+        condition: service_healthy
+
+  api:
+    build: .
+    env_file: .env
+    environment:
+      DB_HOST: db
+      DB_PORT: "5432"
+      RAG_REPORTS_DIR: /reports
+      RAG_REDACT_OUTPUT: ${RAG_REDACT_OUTPUT:-phone,email}
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+    volumes:
+      - uploads:/app/uploads
+      - traces:/app/traces
+      - ${RAG_REPORTS_HOST_DIR:-.}:/reports:ro
+
+  web:
+    build: ./frontend
+    depends_on:
+      api:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1:${RAG_WEB_PORT:-8080}:80"
+
+volumes:
+  pgdata:
+  uploads:
+  traces:

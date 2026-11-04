@@ -1,0 +1,8 @@
+# Install in a separate environment: RAGAS needs older LangChain versions.
+ragas==0.4.3
+langchain<1
+langchain-community<0.4
+langchain-core<1
+langchain-openai<1
+python-dotenv
+psycopg[binary]
