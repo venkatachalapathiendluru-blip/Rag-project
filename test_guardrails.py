@@ -28,6 +28,8 @@ class InputGuardrailTests(unittest.TestCase):
 
     def test_golden_dataset_questions_pass(self):
         path = Path(__file__).with_name("golden_dataset_v1_reviewed.json")
+        if not path.exists():
+            self.skipTest("the test set holds personal resume details and is not published")
         questions = json.loads(path.read_text(encoding="utf-8"))["questions"]
         blocked = [
             q["question"] for q in questions if not check_input(q["question"]).allowed
