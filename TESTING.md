@@ -2,19 +2,19 @@
 
 | Suite | Command | Needs | External calls | Latest result |
 |---|---|---|---|---|
-| Offline | `scripts/test.sh offline` | Python only | None | 225 passed, 0 failed, 0 skipped |
+| Offline | `scripts/test.sh offline` | Python only | None | 67 passed, 0 failed, 0 skipped |
 | Database and API | `RAG_TEST_DB_PORT=5544 scripts/test.sh db` | Disposable PostgreSQL | None, mocked | 37 passed, 0 failed, 0 skipped |
 | Frontend | `scripts/test.sh frontend` | Node | None | 33 passed |
 | Benchmark replay | `DB_PORT=5544 scripts/test.sh benchmark-replay` | Disposable database with baseline | None | 117 of 117 rank lists match |
 | Browser acceptance | `scripts/test.sh e2e` | Live stack | None with the mock provider | 20 of 20 passed with mock provider. 14 of 14 with the live model, before the latest changes |
 | External | `scripts/test.sh external` | NVIDIA key | Small live calls | Not part of this run |
-| Full evaluations | `evaluate_golden_v1*.py`, `evaluate_ragas.py` | NVIDIA key | Expensive | Not rerun |
+| Full evaluations | `evaluate_live_pipeline_depths.py`, `evaluate_ragas.py` | NVIDIA key | Expensive | Not rerun |
 
-The offline count includes 183 tests that existed before this work and 42 new ones. It also passes with the network blocked, with 0 connection attempts.
+On a fresh clone without the private datasets, the suite runs 57 tests and skips 7. It also passes with the network blocked, with 0 connection attempts. Tests for the finished experiments are in `archive/experiment_tests/`.
 
 ## Warnings
 
-- **Running the old scripts directly still calls NVIDIA.** `test_nvidia.py`, `test_reranker.py`, `test_unseen_retrieval.py` and `test_query_expansion.py` are scripts. Importing or collecting them makes no connection, but `scripts/test.sh` still lists only real test modules.
+- **Running the old scripts directly still calls NVIDIA.** `test_nvidia.py` and `test_reranker.py` are scripts. Importing or collecting them makes no connection, but `scripts/test.sh` still lists only real test modules.
 - **Integration tests delete conversations and uploaded documents.** They refuse port 5433 for that reason.
 
 ## Disposable database

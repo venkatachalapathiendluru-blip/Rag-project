@@ -139,7 +139,7 @@ A professional full-stack RAG application with real ingestion, hybrid retrieval,
 
 ## 3. Initial repository state
 
-See `PROJECT_COMPLETION_AUDIT.md`. In short: strong evaluation work and a CLI pipeline, a one-page demo API, no document management, no frontend, no migrations and no CI.
+In short: strong evaluation work and a CLI pipeline, a one-page demo API, no document management, no frontend, no migrations and no CI.
 
 ## 4. Verified completed work kept as it was
 
@@ -207,7 +207,7 @@ No overall corrected citation-support score is presented, and the dashboard labe
 | `rag.py` | `chunk_text` moved to `chunking.py`, unchanged |
 | `Dockerfile`, `docker-compose.yml`, `requirements.txt`, `.gitignore`, `.dockerignore`, `.env.example` | Updated for the platform |
 
-**Not changed:** all 72 hashed reports, checkpoints, datasets and backups. `api.py` remains but is no longer the container's entry point.
+**Not changed:** all 72 hashed reports, checkpoints, datasets and backups. The old `api.py` was later removed.
 
 ## 15. Test results
 
@@ -328,7 +328,12 @@ scripts/test.sh offline
 
 ## 23. Recommended future enhancements
 
-See `PROJECT_IMPLEMENTATION_ROADMAP.md`.
+1. Push to a private GitHub repository so CI runs, and record why grounding checks fail.
+2. Evaluate uploaded documents on a second, non-resume dataset with an independent judge.
+3. Decide the default retrieval profile, using that new evidence.
+4. Add real authentication and document ownership before any public use.
+5. Add OCR for scanned PDFs.
+6. Add an HNSW index once a corpus is large enough to need it, re-checking recall.
 
 ## Disclosures
 

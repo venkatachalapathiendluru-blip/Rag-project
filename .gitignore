@@ -7,11 +7,7 @@
 !.github/**
 !README.md
 !ARCHITECTURE.md
-!EXISTING_ARCHITECTURE.md
 !PRODUCT.md
-!PROJECT_COMPLETION_AUDIT.md
-!PROJECT_COMPLETION_CHECKLIST.md
-!PROJECT_IMPLEMENTATION_ROADMAP.md
 !FINAL_PROJECT_COMPLETION_REPORT.md
 !RAG_FINAL_EVALUATION_REPORT.md
 !RAG_EVALUATION_METHODOLOGY.md
@@ -28,7 +24,6 @@
 !requirements.txt
 !requirements-eval.txt
 !schema.sql
-!api.py
 !chunking.py
 !guardrails.py
 !tracing.py
@@ -42,8 +37,9 @@
 !redteam_eval.py
 !ragas_report.json
 !redteam_report.json
-!test_api.py
 !test_guardrails.py
+!test_nvidia.py
+!test_reranker.py
 !test_tracing.py
 !backend/
 !backend/**

@@ -8,7 +8,7 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 RUN python -c "from sentence_transformers import SentenceTransformer as S; S('all-MiniLM-L6-v2')"
 
-COPY api.py chunking.py guardrails.py tracing.py trace_report.py rag.py rag_chat.py hybrid_retriever.py ./
+COPY chunking.py guardrails.py tracing.py trace_report.py rag.py rag_chat.py hybrid_retriever.py ./
 COPY backend ./backend
 RUN useradd --create-home appuser && mkdir -p /app/traces /app/uploads && chown -R appuser /app /models
 USER appuser
